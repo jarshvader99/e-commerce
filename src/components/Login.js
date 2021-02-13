@@ -31,7 +31,7 @@ class Login extends Component {
     render() {
         return !this.props.context.user ? (
             <>
-                <div className="hero is-primary ">
+                <div className="hero is-link ">
                     <div className="hero-body container">
                         <h4 className="title">Login</h4>
                     </div>
@@ -42,29 +42,42 @@ class Login extends Component {
                     <div className="columns is-mobile is-centered">
                         <div className="column is-one-third">
                             <div className="field">
-                                <label className="label">Email: </label>
-                                <input
-                                    className="input"
-                                    type="email"
-                                    name="username"
-                                    onChange={this.handleChange}
-                                />
+                                <p class="control has-icons-left has-icons-right">
+                                    <input
+                                        className="input"
+                                        type="email"
+                                        name="username"
+                                        placeholder="Email"
+                                        onChange={this.handleChange}
+                                    />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
                             </div>
                             <div className="field">
-                                <label className="label">Password: </label>
-                                <input
-                                    className="input"
-                                    type="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                />
+                                <p class="control has-icons-left has-icons-right">
+                                    <input
+                                        className="input"
+                                        type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        onChange={this.handleChange}
+                                    />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
                             </div>
                             {this.state.error && (
                                 <div className="has-text-danger">{this.state.error}</div>
                             )}
                             <div className="field is-clearfix">
                                 <button
-                                    className="button is-primary is-outlined is-pulled-right"
+                                    className="button is-link is-outlined is-pulled-right"
                                 >
                                     Submit
                 </button>

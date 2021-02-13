@@ -11,10 +11,25 @@ import ProductList from './components/ProductList';
 import Context from "./Context";
 
 export default class App extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      cart: {},
+      products: []
+    };
+    this.routerRef = React.createRef();
+  }
+
+  async componentDidMount() {
     let user = localStorage.getItem("user");
+    let cart = localStorage.getItem("cart");
+
+    const products = await axios.get('http://localhost:3001/products');
     user = user ? JSON.parse(user) : null;
-    this.setState({ user });
+    cart = cart ? JSON.parse(cart) : {};
+
+    this.setState({ user, products: products.data, cart });
   }
 
   login = async (email, password) => {
@@ -46,26 +61,6 @@ export default class App extends Component {
     this.setState({ user: null });
     localStorage.removeItem("user");
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      cart: {},
-      products: []
-    };
-    this.routerRef = React.createRef();
-  }
-
-  async componentDidMount() {
-    let user = localStorage.getItem("user");
-    let cart = localStorage.getItem("cart");
-
-    const products = await axios.get('http://localhost:3001/products');
-    user = user ? JSON.parse(user) : null;
-    cart = cart ? JSON.parse(cart) : {};
-
-    this.setState({ user, products: products.data, cart });
-  }
 
   addProduct = (product, callback) => {
     let products = this.state.products.slice();
@@ -140,7 +135,7 @@ export default class App extends Component {
         <Router ref={this.routerRef}>
           <div className="App">
             <nav
-              className="navbar container"
+              className="navbar container is-transparent"
               role="navigation"
               aria-label="main navigation"
             >
@@ -175,7 +170,7 @@ export default class App extends Component {
                 <Link to="/cart" className="navbar-item">
                   Cart
                   <span
-                    className="tag is-primary"
+                    className="tag is-link"
                     style={{ marginLeft: "5px" }}
                   >
                     {Object.keys(this.state.cart).length}

@@ -60,7 +60,7 @@ class AddProduct extends Component {
             <Redirect to="/" />
         ) : (
                 <>
-                    <div className="hero is-primary ">
+                    <div className="hero is-link ">
                         <div className="hero-body container">
                             <h4 className="title">Add Product</h4>
                         </div>
@@ -131,7 +131,7 @@ class AddProduct extends Component {
                                 )}
                                 <div className="field is-clearfix">
                                     <button
-                                        className="button is-primary is-outlined is-pulled-right"
+                                        className="button is-link is-outlined is-pulled-right"
                                         type="submit"
                                         onClick={this.save}
                                     >
